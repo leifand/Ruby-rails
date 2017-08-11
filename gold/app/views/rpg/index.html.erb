@@ -1,0 +1,40 @@
+<h1>Ninja Gold</h1>
+<h4>GOLD: <%= session[:gold] %></h4>
+<div>
+  <p><strong>Farm:</strong></p>
+  <p>(earns 100-200 gold)</p>
+  <form action="process_gold" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="hidden" name="activity" value="farm">
+    <input type="submit" value="Find Gold!">
+  </form>
+</div>
+<div><p><strong>Cave:</strong></p>
+  <p>(earns 50-100 gold)</p>
+  <form action="process_gold" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="hidden" name="activity" value="cave">
+    <input type="submit" value="Find Gold!">
+  </form>
+</div>
+<div><p><strong>House:</strong></p>
+  <p>(earns 20-50 gold)</p>
+  <form action="process_gold" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="hidden" name="activity" value="house">
+    <input type="submit" value="Find Gold!">
+  </form>
+</div>
+<div><p><strong>Caisino:</strong></p>
+  <p>(earns / loses 0-500 gold)</p>
+  <form action="process_gold" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="hidden" name="activity" value="caisino">
+    <input type="submit" value="Find Gold!">
+  </form>
+</div>
+<div><p><strong>Activities:</strong></p>
+  <% for activity in session[:activities] do %>
+    <p><%= activity %></p>
+  <% end %>
+</div>
