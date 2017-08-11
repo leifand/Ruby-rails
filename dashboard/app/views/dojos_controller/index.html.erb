@@ -1,0 +1,7 @@
+<h1>Listing <%= @dojos.count %> Dojos</h1>
+<% for dojo in @dojos do %>
+  <p><%= dojo.branch %></p>
+  <p><%= dojo.street %></p>
+  <p><%= dojo.city %></p>
+  <p><%= dojo.state %></p>
+<% end %>
