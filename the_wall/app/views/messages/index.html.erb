@@ -1,0 +1,23 @@
+<h1>Ninja wall</h1>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  <p><%= error %></p>
+  <% end %>
+<% end %>
+<% if flash[:notice] %>
+  <% flash[:notice].each do |notice| %>
+  <p><%= notice %></p>
+  <% end %>
+<% end %>
+<% if @messages %>
+  <% @messages.each do |message| %>
+    <p><%= message.user.username %> - <%= message.created_at %></p>
+    <p><%= message.context %></p>
+  <% end %>
+<% end %>
+<h3>Post a Message</h3>
+<form action="" method="post">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token"/>
+  <textarea name="message[context]" rows="8" cols="40"></textarea>
+  <button type="submit">Post a Message</button>
+</form>

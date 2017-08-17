@@ -1,0 +1,17 @@
+<h1>Sign In</h1>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+  <p><%= error %></p>
+  <% end %>
+<% end %>
+<% if flash[:notice] %>
+  <% flash[:notice].each do |notice| %>
+  <p><%= notice %></p>
+  <% end %>
+<% end %>
+<form action="/users" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+  <label>Username:</label>
+  <input type="text" name="user[username]" placeholder="username"/>
+  <button type="submit">Sign In</button>
+</form>
