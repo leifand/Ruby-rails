@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
    if @user
      if @user.try(:authenticate, params[:password])
          session[:user_id] = @user.id
-         return redirect_to ideas_path
+         return redirect_to ideas_url
      end
      flash[:errors] = ["You are NOT Ninja!"]
    end

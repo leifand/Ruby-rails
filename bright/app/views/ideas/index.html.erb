@@ -1,0 +1,26 @@
+<h1>Hi <%= current_user.alias.titleize %>!</h1>
+<a href="/logout" data-method="delete">Logout</a>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:errors] %>
+  <p><%= flash[:errors] %></p>
+<% end %>
+
+<a href="/users/<%= current_user.id %>"><%= current_user.alias %></a>
+
+<!-- show all of the ideas, sorted (ideally lol) from favorite to least favorite -->
+<% @best_ideas.each do |idea| %>
+  <p> ---- </p>
+  <p><%= idea.content %></p>
+  <p><%= idea.user.alias %></p>
+<% end %>
+
+<!-- Idea Form -->
+<form action="/ideas" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+    <input type="text" name="idea[content]"/>
+  <button type="submit">Idea!</button>
+</form>
+<!-- End Idea Form -->
