@@ -1,0 +1,31 @@
+<!-- Register Form -->
+  <h2>Register</h2>
+  <form action="/users" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+      <label for="username">First Name:</label>
+      <input type="text" name="user[username]" id="username"/>
+      <label for="password">Password:</label>
+      <input type="password" name="user[password]" id="password" class="form-control" />
+
+      <label for="password_confirmation">Password Confirmation:</label>
+      <input type="password" name="user[password_confirmation]" id="password_confirmation" class="form-control" />
+
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+<!-- End Registration Form -->
+
+<!-- Login Form -->
+  <h2>Login</h2>
+  <form action="/login" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+
+      <label for="email">Username:</label>
+      <input type="text" name="username" id="username" />
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password"  />
+
+      <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+<!-- End Login Form -->
