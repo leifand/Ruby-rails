@@ -8,13 +8,13 @@
   <p><%= flash[:errors] %></p>
 <% end %>
 
-<a href="/users/<%= current_user.id %>"><%= current_user.alias %></a>
-
 <!-- show all of the ideas, sorted (ideally lol) from favorite to least favorite -->
 <% @best_ideas.each do |idea| %>
   <p> ---- </p>
+  <p><a href="/users/<%= idea.user.id %>"><%= idea.user.alias %></a>
   <p><%= idea.content %></p>
-  <p><%= idea.user.alias %></p>
+  <p><a href="/ideas/<%= idea.id %>"># people like this</a></p>
+  <p><a href="/likes/<%= idea.id %>">Like</a></p>
 <% end %>
 
 <!-- Idea Form -->

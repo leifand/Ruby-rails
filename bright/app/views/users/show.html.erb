@@ -1,1 +1,19 @@
-<%= @user.name %>
+<p><a href="/logout" data-method="delete">Logout</a></p>
+<p><a href="/ideas">Bright Ideas</a></p>
+
+
+<p><label>Name: </label>
+<%= @user.name %></p>
+<p><label>Alias: </label>
+<%= @user.alias %></p>
+<p><label>Email: </label>
+<%= @user.email %></p>
+
+<p>
+  <label>Total Number of Posts: </label>
+  <%= @user.ideas.count %>
+</p>
+<p>
+  <label>Total Number of Likes: </label>
+  <%= @user.likes.count %>
+</p>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :ideas
   post 'ideas/:id/user' => 'ideas#create'
   delete 'ideas/:id/user' => 'ideas#destroy'
-  # Comment Routes
-  #post 'comments' => 'comments#create'
+  # Like Routes
+  #get 'ideas/:id' => 'likes#create'
+  get 'likes/:id' => 'likes#create'
 end
