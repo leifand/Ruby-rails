@@ -1,0 +1,52 @@
+<h1>Hi <%= current_user.fname.titleize %>!</h1>
+<p><a href="/logout" data-method="delete">Logout</a></p>
+<p><a href='/shoes'>Go to All Products</a></p>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:errors] %>
+  <p><%= flash[:errors] %></p>
+<% end %>
+
+<!-- Shoe Form -->
+<form action="/shoes" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+    <label>Name: </label>
+    <input type="text" name="shoe[description]"/>
+    <label>Price: </label>
+    <input type="number" placeholder="0.00" step="0.01" name="shoe[price]"/>
+  <button type="submit">Sell</button>
+</form>
+<!-- End Shoe Form -->
+
+<p><h2>Your Products that are not yet sold</h2></p>
+<!-- show all the shoes you havn't sold with option to delete -->
+<% @my_shoes.each do |shoe| %>
+  <P>----------------</p>
+  <p><%= shoe.description %></p>
+  <p>$ <%= shoe.price %></p>
+  <p><a href='/shoes/<%= shoe.id %>' data-method='delete'>Delete</a></p>
+<% end %>
+
+<p><h2>Sales</h2></p>
+<!-- show your sales here ... -->
+<% total_sold = 0 %>
+<% @my_sales.each do |shoe| %>
+  <P>----------------</p>
+  <p><%= shoe.description %></p>
+  <p>$ <%= shoe.price %></p>
+  <% total_sold += shoe.price %>
+<% end %>
+<p><h4>Total: <%= total_sold %></h4></p>
+
+<p><h2>Purchases</h2></p>
+<!-- show purchases here -->
+<% total_purchased = 0 %>
+<% @my_purchases.each do |shoe| %>
+  <P>----------------</p>
+  <p><%= shoe.description %></p>
+  <p>$ <%= shoe.price %></p>
+  <% total_purchased += shoe.price %>
+<% end %>
+<p><h4>Total: <%= total_purchased %></h4></p>

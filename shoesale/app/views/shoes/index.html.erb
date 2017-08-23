@@ -1,0 +1,20 @@
+<h1>Hi <%= current_user.fname.titleize %> <%= current_user.lname.titleize %>!</h1>
+<p><a href="/logout" data-method="delete">Logout</a></p>
+<p><a href='/dashboard/<%= current_user.id %>'>Go to dashboard</a></p>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:errors] %>
+  <p><%= flash[:errors] %></p>
+<% end %>
+
+<p><h3>All Products</h3></p>
+
+<!-- show all of the shoes, sorted (ideally lol)  -->
+<% @shoes.each do |shoe| %>
+  <P>----------------</p>
+  <p><%= shoe.description %></p>
+  <p>$ <%= shoe.price %></p>
+  <p><a href='/sales/<%= shoe.id %>'>Buy</a></p>
+<% end %>
