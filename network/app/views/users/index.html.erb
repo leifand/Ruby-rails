@@ -1,0 +1,9 @@
+<p><a href='/dashboard'>Go to Ninja Network</a></p>
+<p><a href="/logout" data-method="delete">Logout</a></p>
+
+<p><h3>Users you may want to connect with:</h3></p>
+<!-- show all the users you aren't networked with -->
+<% @users.each do |user| %>
+  <P>----------------</p>
+  <p><a href='/users/<%= user.id %>'><%= user.name.titleize %></a> | <a href='#'>Connect</a></p>
+<% end %>
