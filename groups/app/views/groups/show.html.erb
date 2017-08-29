@@ -1,0 +1,33 @@
+<a href="/groups">Dashboard</a>
+<a href="/logout" data-method="delete">Logout</a>
+
+<h1><%= @group.name %></h1>
+<p><%= @group.description %></p>
+
+<!-- if my group give the option to leave ... -->
+<% if @group.users.include?(current_user) %>
+  <form action="/leave/<%= @group.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button type="submit" data-method="delete">Leave Group</button>
+  </form>
+<% else %>
+<!-- .. otherwise give the option to join the group -->
+  <form action="/join/<%= @group.id %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <button type="submit">Join Group</button>
+  </form>
+<% end %>
+
+<!-- show the creator and list all members -->
+<% if @group.user == current_user %>
+  <h4>Created by: YOU</h4>
+<% else %>
+  <h4>Created by: <%= @group.user.fname.titleize %> <%= @group.user.lname.titleize %></h4>
+<% end %>
+
+<!-- Holy crap RoR rocks once you get it rolling :) -->
+<h4>Members:</h4>
+<% @group.users.each do |user| %>
+  <p><%= user.fname.titleize %> <%= user.lname.titleize %>
+<% end %>

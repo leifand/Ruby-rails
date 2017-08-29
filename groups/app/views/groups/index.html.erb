@@ -1,0 +1,27 @@
+<a href="/logout" data-method="delete">Logout</a>
+<h1>Hi, <%= current_user.fname.titleize %> <%= current_user.lname.titleize %></h1>
+
+<!-- show all groups here -->
+<h3>Here are the organizations you may join!</h3>
+<% @groups.each do |group| %>
+<!-- if this is current users group present a delete icon -->
+  <% if group.user == current_user %>
+    <p><strong><a href="/groups/<%= group.id %>" data-method="delete">&#x24e7;</a>|<a href="/groups/<%= group.id %>"><%= group.name %></a></strong></p>    
+  <% else %>
+    <p><strong><a href="/groups/<%= group.id %>"><%= group.name %></a></strong></p>
+  <% end %>
+    <p>Members: <%= group.members.count %></p>
+    <p><%= group.description %></p>
+<% end %>
+
+<!-- Group Form -->
+<h2>Create a new organization</h2>
+<form action="/groups" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label>Name:</label>
+  <input type="text" name="group[name]"/>
+  <label>Description:</label>
+  <textarea name="group[description]" rows="8" cols="45"></textarea>
+  <button type="submit">Create</button>
+</form>
+<!-- end form -->

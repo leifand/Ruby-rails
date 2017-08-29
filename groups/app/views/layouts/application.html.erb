@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ror4</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <!-- Ninja Notices -->
+  <% if flash[:notice] %>
+      <% flash[:notice].each do |notice| %>
+          <p><%= notice %></p>
+      <% end %>
+  <% end %>
+  <!-- Ninja Errors -->
+  <% if flash[:errors] %>
+      <% flash[:errors].each do |error| %>
+              <p><%= error %></p>
+      <% end %>
+  <% end %>
+  <!-- end flash display -->
+  
+<%= yield %>
+
+</body>
+</html>
